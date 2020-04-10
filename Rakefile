@@ -7,4 +7,4 @@ require 'jammit'
 
 Anathief::Application.load_tasks
 
-Jammit.package!
+Jammit.package! :base_url => "https://anagramthief.herokuapp.com/"

@@ -1,23 +1,23 @@
 Anathief::Application.routes.draw do
   root :to => 'welcome#index'
 
-  match '/auth/fb_callback', :to => 'sessions#fb_callback', :as => 'sessions_fb_callback'
-  match '/auth/guest', :to => 'sessions#guest_in', :as => 'sessions_guest_in'
-  match '/auth/logout', :to => 'sessions#logout', :as => 'sessions_logout'
+  match '/auth/fb_callback', :to => 'sessions#fb_callback', :as => 'sessions_fb_callback', via: [:get, :post]
+  match '/auth/guest', :to => 'sessions#guest_in', :as => 'sessions_guest_in', via: [:get, :post]
+  match '/auth/logout', :to => 'sessions#logout', :as => 'sessions_logout', via: [:get, :post]
 
-  match '/games/list', :to => 'games#list', :as => 'games_list'
-  match '/games/create', :to => 'games#create', :as => 'games_create'
-  match '/games/get_token', :to => 'games#get_token', :as => 'games_get_token'
+  match '/games/list', :to => 'games#list', :as => 'games_list', via: [:get, :post]
+  match '/games/create', :to => 'games#create', :as => 'games_create', via: [:get, :post]
+  match '/games/get_token', :to => 'games#get_token', :as => 'games_get_token', via: [:get, :post]
 
-  match '/play/:id', :to => 'play#play', :as => 'play'
-  match '/play/:id/invite_form', :to => 'play#invite_form', :as => 'play_invite_form'
+  match '/play/:id', :to => 'play#play', :as => 'play', via: [:get, :post]
+  match '/play/:id/invite_form', :to => 'play#invite_form', :as => 'play_invite_form', via: [:get, :post]
 
-  match '/bots/add', :to => 'bots#add', :as => 'bots_add'
-  match '/bots/list', :to => 'bots#list', :as => 'bots_list'
-  match '/bots/remove', :to => 'bots#remove', :as => 'bots_remove'
-  match '/bots/change', :to => 'bots#change', :as => 'bots_change'
+  match '/bots/add', :to => 'bots#add', :as => 'bots_add', via: [:get, :post]
+  match '/bots/list', :to => 'bots#list', :as => 'bots_list', via: [:get, :post]
+  match '/bots/remove', :to => 'bots#remove', :as => 'bots_remove', via: [:get, :post]
+  match '/bots/change', :to => 'bots#change', :as => 'bots_change', via: [:get, :post]
 
-  match '/internal', :to => 'internal#endpoint', :as => 'internal_endpoint'
+  match '/internal', :to => 'internal#endpoint', :as => 'internal_endpoint', via: [:get, :post]
 
   #resources :games, :module => 'admin', :path => '/admin/games'
   #namespace 'admin' do
