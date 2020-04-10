@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/bkeepers/dotenv.git
+  revision: 9e16a424083055139e62d60a55bd0fec53003cee
+  specs:
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2)
+
+GIT
+  remote: git://github.com/rails/prototype-rails.git
+  revision: 0fed929ff48c10c3b978edd3baa983a81f404dbf
+  branch: 4.2
+  specs:
+    prototype-rails (4.0.0)
+      rails (~> 4.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -187,6 +204,7 @@ PLATFORMS
 
 DEPENDENCIES
   compass (>= 0.11.1)
+  dotenv-rails!
   em-http-request
   em-synchrony
   em-websocket
@@ -197,6 +215,7 @@ DEPENDENCIES
   log4r-color
   mini_fb
   pg (~> 0.20)
+  prototype-rails!
   rails (= 4.2.11)
   rails_12factor
   redis

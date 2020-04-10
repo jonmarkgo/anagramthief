@@ -51,3 +51,5 @@ gem 'haml'
 gem 'jammit'
 
 gem 'log4r-color'
+gem 'prototype-rails', github: 'rails/prototype-rails', branch: '4.2'
+gem 'dotenv-rails', :github => "bkeepers/dotenv"
