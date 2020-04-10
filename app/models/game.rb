@@ -8,10 +8,13 @@ class Game < ActiveRecord::Base
   validates :creator, :presence => true
 
   def self.process_inactive
+    #puts "processing"
     self.includes(:users).where('games.updated_at < ?', 1.minute.ago).each do |g|
       # remove users
+      #puts g.users.inspect
       user_ids = g.users.map {|u| u.id}
-      User.update_all({:game_id => nil}, {:id => user_ids})
+     # puts "ids: #{user_ids}"
+      User.where(id: user_ids).update_all(game_id: nil)
     end
 
     self

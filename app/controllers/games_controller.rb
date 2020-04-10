@@ -22,7 +22,7 @@ class GamesController < ApplicationController
           .where(:users => {:uid => @friend_ids}).all
 
         @friend_games = sort_games_by_friend_ct @friend_games
-          .delete_if {|g| my_game_ids.include? g.id }
+          .to_a.delete_if {|g| my_game_ids.include? g.id }
         friend_game_ids = @friend_games.map{|g| g.id}
       rescue MiniFB::FaceBookError
         logger.error "FB error in games_list: #{$!}"
@@ -36,7 +36,7 @@ class GamesController < ApplicationController
     end
 
     @public_games = Game.hide_old.includes(:creator, :users)
-      .delete_if {|g| friend_game_ids.include? g.id or
+      .to_a.delete_if {|g| friend_game_ids.include? g.id or
                       my_game_ids.include? g.id}
     @public_games = sort_games_by_user_ct @public_games
 

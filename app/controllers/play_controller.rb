@@ -4,6 +4,7 @@ class PlayController < ApplicationController
   def play
     # Render template, show state
     # 
+
     @id_token = generate_play_token(@me_id, @game_id)
 
     @robot_titles = BotPersonalities.instance.all_titles
@@ -24,7 +25,9 @@ class PlayController < ApplicationController
     @game_id = params[:id]
 
     begin
-      @game = Game.find(@game_id, :include => [:users])
+      @game = Game.where(id: @game_id).includes([:users])
+      puts "games"
+      puts @game.inspect
     rescue ActiveRecord::RecordNotFound
       redirect_to games_list_url unless @game
       return false
@@ -35,7 +38,8 @@ class PlayController < ApplicationController
       @me.save
 
       # need to reload this because now this user is in the @game.users list too
-      @game = Game.find(@game_id, :include => [:users])
+      @game = Game.where(id: @game_id).includes([:users])
+
     end
   end
 

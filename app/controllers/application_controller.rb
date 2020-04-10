@@ -68,6 +68,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     signed_in = user_signed_in?
+
     unless signed_in
       respond_to do |format|
         format.html { redirect_to root_url }
