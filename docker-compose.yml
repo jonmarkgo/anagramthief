@@ -61,6 +61,24 @@ services:
     command: "node siows_proxy.js -i 8023 -o ws://web:8123"
     networks:
       - anagramthief
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./log:/var/log/nginx
+      - .:/rails
+    depends_on:
+      - web
+      - node
+    restart: always
+    networks:
+      - anagramthief
+      
 networks:
   anagramthief:
     driver: bridge

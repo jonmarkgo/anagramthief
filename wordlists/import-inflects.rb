@@ -31,8 +31,8 @@ file = ARGV[0]
 rhash = ARGV[1] || '2+2lemma'
 
 puts "Reading #{file} => redis hash '#{rhash}'"
-puts "Enter to continue, ^C to abort"
-STDIN.gets
+#puts "Enter to continue, ^C to abort"
+#STDIN.gets
 
 @r = Redis.new(host: "redis")
 
@@ -92,4 +92,5 @@ data = @hash.map {|inflection, headword_set|
   #[inflection, set_str]
   @r.hset rhash, inflection, set_str
 }.flatten
+exit(0)
 #@r.hmset rhash, *data

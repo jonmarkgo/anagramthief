@@ -4,8 +4,8 @@ file = ARGV[0]
 rset = ARGV[1]
 
 puts "Reading #{file} => redis set '#{rset}'"
-puts "Enter to continue, ^C to abort"
-STDIN.gets
+#puts "Enter to continue, ^C to abort"
+#STDIN.gets
 
 @r = Redis.new(host: "redis")
 
@@ -15,3 +15,4 @@ IO.foreach(file) { |line|
   line.chomp!
   @r.sadd(rset, line)
 }
+exit(0)
