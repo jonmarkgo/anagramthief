@@ -6,7 +6,6 @@ embed_assets: on
 
 javascripts:
   application:
-    - public/javascripts/socket.io/socket.io.js
     - public/javascripts/underscore.js
     - public/javascripts/jquery.placeholder.js
     - public/javascripts/application.js
