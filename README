@@ -6,8 +6,6 @@ First time you run it:
 move .env.sample to .env and fill in vars
 docker-compose run web bundle exec rake db:create
 docker-compose run web bundle exec rake db:migrate
-docker-compose run web ruby wordlists/import-inflects.rb wordlists/2+2lemma.txt 2+2lemma
-docker-compose run web ruby wordlists/import-wordlist.rb wordlists/TWL06.txt twl06
 
 To start:
-docker-compose up --build
+docker-compose up --build -d
