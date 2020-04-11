@@ -87,6 +87,9 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    em-websocket-client (0.1.2)
+      eventmachine
+      websocket
     erubis (2.7.0)
     ethon (0.12.0)
       ffi (>= 1.3.0)
@@ -191,6 +194,7 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    websocket (1.2.8)
     wordnik (4.12)
       activemodel (>= 3.0.3)
       addressable (>= 2.2.4)
@@ -208,6 +212,7 @@ DEPENDENCIES
   em-http-request
   em-synchrony
   em-websocket
+  em-websocket-client
   eventmachine
   haml
   jammit

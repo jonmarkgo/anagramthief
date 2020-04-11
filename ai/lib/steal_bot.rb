@@ -2,8 +2,10 @@ require 'em-http-request'
 require 'em-synchrony'
 require 'cancelable_fiber'
 
+require 'em-websocket'
 require 'log4r-color'
 
+require 'em-websocket-client'
 require 'steal_engine'
 #require 'steal_engine_brute'
 require 'word_matcher'
@@ -59,7 +61,7 @@ class StealBot
     @serial += 1
     msg = {:_t => type, :_s => serial}.merge(data).to_json
     @@log.debug "#{@user_id}: OUT>> #{msg}"
-    @http.send msg
+    @http.send_msg msg
   end
 
   MAX_WORD_LEN_START, MAX_WORD_LEN_STEP, MAX_WORD_LEN_DEFAULT_LIMIT = 4, 2, 15
@@ -218,7 +220,7 @@ class StealBot
 
     @@log.info "#{@user_id}: StealBot starting, connecting to ws://#{host}:#{port}..."
 
-    @http = EventMachine::HttpRequest.new("ws://#{host}:#{port}/websocket").get :timeout => 0
+    @http = EventMachine::WebSocketClient.connect("ws://#{host}:#{port}/websocket")
     @http.errback do |e|
       @@log.error "#{@user_id}: StealBot received error: #{e}"
     end
@@ -230,7 +232,7 @@ class StealBot
       @@log.debug "#{@user_id}: IN << #{msg_}"
 
       begin
-        msg = JSON.parse(msg_)
+        msg = JSON.parse(msg_.data)
 
         if msg['_t'] == 'update'
           got_update msg
