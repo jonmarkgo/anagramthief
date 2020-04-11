@@ -1,38 +1,38 @@
 module Anathief
-  require 'yaml'
+ # require 'yaml'
   require 'dotenv'
   RAILS_ENV = ENV["RAILS_ENV"]
-  settings_file = File.expand_path(File.dirname(__FILE__) + "/../config/settings.yml")
-  puts "Loading settings from #{settings_file}, env #{RAILS_ENV}"
-  SETTINGS = YAML.load_file(settings_file)["#{RAILS_ENV}"]
+#  settings_file = File.expand_path(File.dirname(__FILE__) + "/../config/settings.yml")
+ # puts "Loading settings from #{settings_file}, env #{RAILS_ENV}"
+ # SETTINGS = YAML.load_file(settings_file)["#{RAILS_ENV}"]
 
   module Facebook
-    APP_ID = SETTINGS['facebook']['app_id']
-    SECRET = SETTINGS['facebook']['app_secret']
-    CANVAS_URL = SETTINGS['facebook']['canvas_url']
+    APP_ID = ENV["FACEBOOK_APP_ID"]
+    SECRET = ENV["FACEBOOK_APP_SECRET"]
+    CANVAS_URL = ENV["FACEBOOK_CANVAS_URL"]
   end
 
   module AppServer
-    LISTEN_HOST = SETTINGS['app_server']['listen_host']
-    CONNECT_HOST = SETTINGS['app_server']['connect_host']
-    PORT = SETTINGS['app_server']['port']
-    SIOWS_URL = SETTINGS['app_server']['siows_url']
+    LISTEN_HOST = ENV["APP_SERVER_LISTEN_HOST"]
+    CONNECT_HOST = ENV["APP_SERVER_CONNECT_HOST"]
+    PORT = ENV["APP_SERVER_PORT"]
+    SIOWS_URL = ENV["APP_SERVER_SIOWS_URL"]
   end
 
   module BotControl
-    LISTEN_HOST = SETTINGS['bot_control']['listen_host']
-    CONNECT_HOST = SETTINGS['bot_control']['connect_host']
-    PORT = SETTINGS['bot_control']['port']
+    LISTEN_HOST = ENV["BOT_CONTROL_LISTEN_HOST"]
+    CONNECT_HOST = ENV["BOT_CONTROL_CONNECT_HOST"]
+    PORT = ENV["BOT_CONTROL_PORT"]
   end
 
   module Internal
-    ALLOWED_HOSTS = SETTINGS['internal']['allowed_hosts']
-    ENDPOINT = SETTINGS['internal']['endpoint']
+    ALLOWED_HOSTS = ENV["INTERNAL_ALLOWED_HOSTS"]
+    ENDPOINT = ENV["INTERNAL_ENDPOINT"]
   end
 
-  WORDNIK_KEY = SETTINGS['wordnik']['api_key']
+  WORDNIK_KEY = ENV["WORDNIK_APIKEY"]
 
-  TOKEN_SECRET = SETTINGS['token_secret']
+  TOKEN_SECRET = ENV["TOKEN_SECRET"]
 end
 
 require 'wordnik'
