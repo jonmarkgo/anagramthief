@@ -5,13 +5,13 @@ var argv = require('optimist')
   .demand(['i','o'])
   .argv;
 
-var WebSocket = require('websocket-client').WebSocket;
+var WebSocket = require('ws');
 
 var io = require('socket.io').listen(argv.i);
 io.set('log level', 1);
-io.enable('browser client minification');  // send minified client
-io.enable('browser client etag');          // apply etag caching logic based on version number
-io.set('transports', ['websocket' , 'flashsocket' , 'htmlfile' , 'xhr-polling' , 'jsonp-polling']);
+//io.enable('browser client minification');  // send minified client
+//io.enable('browser client etag');          // apply etag caching logic based on version number
+io.set('transports', ['websocket' , 'flashsocket' , 'htmlfile' , 'xhr-polling' , 'jsonp-polling', 'polling']);
 
 io.sockets.on('connection', function (iosock) {
     var prequeue = [];
