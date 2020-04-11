@@ -7,7 +7,7 @@ puts "Reading #{file} => redis set '#{rset}'"
 puts "Enter to continue, ^C to abort"
 STDIN.gets
 
-@r = Redis.new
+@r = Redis.new(host: "redis")
 
 i = 0
 IO.foreach(file) { |line|

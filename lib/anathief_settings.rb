@@ -3,6 +3,8 @@ module Anathief
   require 'dotenv'
   Dotenv.load('../.env')
   RAILS_ENV = ENV["RAILS_ENV"]
+  REDIS_HOST = ENV["REDIS_HOST"]
+  REDIS_KPREFIX = ENV["REDIS_KPREFIX"]
 #  settings_file = File.expand_path(File.dirname(__FILE__) + "/../config/settings.yml")
  # puts "Loading settings from #{settings_file}, env #{RAILS_ENV}"
  # SETTINGS = YAML.load_file(settings_file)["#{RAILS_ENV}"]

@@ -2,7 +2,7 @@ require 'set'
 require 'redis'
 
 module WordMatcher
-  @redis = Redis.new
+  @redis = Redis.new(host: Anathief::REDIS_HOST)
   
   def self.word_in_dict?(word_raw)
     word = word_raw.upcase

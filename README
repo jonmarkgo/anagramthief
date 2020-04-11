@@ -2,20 +2,12 @@ This is the code for [Anagram Thief](http://dcliu.com/projects/anagram-thief/), 
 
 Updated to run on Rails 4
 
-To execute:
+First time you run it:
 move .env.sample to .env and fill in vars
+docker-compose run web bundle exec rake db:create
+docker-compose run web bundle exec rake db:migrate
+docker-compose run web ruby wordlists/import-inflects.rb wordlists/2+2lemma.txt 2+2lemma
+docker-compose run web ruby wordlists/import-wordlist.rb wordlists/TWL06.txt twl06
 
-in wordlists dir:
-ruby import-inflects.rb 2+2lemma.txt
-ruby import-wordlist.rb TWL06.txt twl06
-
-in ai dir:
-./dev_launch or prod_launch
-
-in script dir:
-./dev-app_server or ./prod-app_server
-
-in node dir:
-./dev-launch or ./prod-launch
-
-Lastly, run rails server (looks like some of the other services need to be up before it runs successfully)
+To start:
+docker-compose up --build

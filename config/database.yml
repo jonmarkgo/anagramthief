@@ -1,10 +1,11 @@
 
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+   adapter: postgresql
+   encoding: unicode
+   host: db
+   username: postgres
+   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+   timeout: 5000
 
 development:
   <<: *default
@@ -17,4 +18,9 @@ test:
   database: anagramthief_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+   adapter: postgresql
+   encoding: unicode
+   host: db
+   username: postgres
+   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+   timeout: 5000

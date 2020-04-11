@@ -1,0 +1,66 @@
+version: '3'
+services:
+  db:
+    image: postgres:12.2
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432:5432"
+    networks:
+      - anagramthief
+  web:
+    build: .
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+      - "8123:8123"
+      - "19617:19617"
+    expose:
+      - "3000"
+      - "8123"
+      - "19617"
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: "production"
+    env_file:
+     - .env
+    networks:
+      - anagramthief
+  redis:
+    image: "redis:5.0.8"
+
+    command: redis-server
+
+    ports:
+     - "6379:6379"
+    expose:
+      - "6379"
+    volumes:
+     - $PWD/redis-data:/var/lib/redis
+
+    environment:
+     - REDIS_REPLICATION_MODE=master
+    networks:
+      - anagramthief
+  node:
+    image: "node:13"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./node:/home/node/app
+    ports:
+      - "8023:8023"
+    expose:
+      - "8023"
+    command: "node siows_proxy.js -i 8023 -o ws://web:8123"
+    networks:
+      - anagramthief
+networks:
+  anagramthief:
+    driver: bridge

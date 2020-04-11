@@ -34,7 +34,7 @@ puts "Reading #{file} => redis hash '#{rhash}'"
 puts "Enter to continue, ^C to abort"
 STDIN.gets
 
-@r = Redis.new
+@r = Redis.new(host: "redis")
 
 @r.del rhash
 
