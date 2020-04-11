@@ -43,35 +43,12 @@
   %hr/
 
 #invites-section.clearfix{:style => "display:none"}
-  %h4 Option 1: Direct Link
+  %h4 Direct Link
   %p
     Copy and paste this URL to your friends, and it will bring them directly to this game room:
     %br/
     (Mouse-over and hit CTRL-C / Command-C)
-    %br/
-    %input#invite-url{:readonly => "readonly", :type => "text", :value => play_in_canvas_url(@game_id)}/
-  %h4 Option 2: Facebook Invite
-  - if current_user.guest?
-    %p
-      You need to sign in with Facebook to use this option!
-      %br/
-      %a{:href => oauth_url, :target => "_top"}
-        %img{:alt => "Sign in with Facebook", :src => "/images/loginbutton.png"}/
-  - else
-    %p You should see the invite box in a few moments below.
-    %fb:serverfbml{:style => "width:500px"}
-      %script{:type => "text/fbml"}
-        <fb:request-form
-        action="<haml:loud> play_in_canvas_url @game_id </haml:loud>"
-        method="post"
-        type="Anagram Thief"
-        content="Come join my game of Anagram Thief, a word game where you try to steal letters from your friends and make the most words!">
-        
-        <fb:multi-friend-selector condensed="true"
-        actiontext="Invite your friends to play here!"
-        style="width:500px" />
-        <fb:request-form-submit import_external_friends="false" />
-        </fb:request-form>
+    
   %a#close-invites-link{:href => "#", :style => "display:none"}
   %hr/
 
@@ -128,24 +105,6 @@
     #definition
 
 
-#prompt-login{:style => "display: none"}
-  %div
-    %p.sectionhead Have you considered logging in with Facebook?
-    %p You'll be able to:
-    %ul
-      %li Keep a record of your wins and games played
-      %li Use your profile picture in the game
-      %li Quickly see which rooms your friends are playing in
-      %li Send Facebook invites to friends
-      %li Post your best games to your Facebook wall
-    %p
-      %strong Anagram Thief will never post anything without asking you each time.
-    %p
-      %a{:href => oauth_url, :target => "_top"}
-        %img{:alt => "Sign in with Facebook", :src => "/images/loginbutton.png"}/
-      %br/
-      %a#hide-prompt-login.button.black{:href => "#"} No thanks
-
 - content_for :after_scripts do
   :javascript
     $(document).ready(function() {
@@ -155,8 +114,6 @@
         gameId: '#{raw @game_id}',
         idToken: '#{raw @id_token}',
         urls: {
-          canvas: '#{raw Anathief::Facebook::CANVAS_URL}',
-          fbPostImg: '#{raw image_url "tiles-picture2.jpg"}',
           addBot: '#{raw bots_add_url}',
           removeBot: '#{raw bots_remove_url}',
           listBots: '#{raw bots_list_url}',

@@ -9,11 +9,11 @@ module Anathief
  # puts "Loading settings from #{settings_file}, env #{RAILS_ENV}"
  # SETTINGS = YAML.load_file(settings_file)["#{RAILS_ENV}"]
 
-  module Facebook
-    APP_ID = ENV["FACEBOOK_APP_ID"]
-    SECRET = ENV["FACEBOOK_APP_SECRET"]
-    CANVAS_URL = ENV["FACEBOOK_CANVAS_URL"]
-  end
+  # module Facebook
+  #   APP_ID = ENV["FACEBOOK_APP_ID"]
+  #   SECRET = ENV["FACEBOOK_APP_SECRET"]
+  #   CANVAS_URL = ENV["FACEBOOK_CANVAS_URL"]
+  # end
 
   module AppServer
     LISTEN_HOST = ENV["APP_SERVER_LISTEN_HOST"]

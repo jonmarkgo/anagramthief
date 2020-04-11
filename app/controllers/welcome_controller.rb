@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    on_canvas = process_signed_request
+#    on_canvas = process_signed_request
     if user_signed_in?
       game_id = params[:game_id] || session[:go_to_game_id]
       if game_id

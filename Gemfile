@@ -32,7 +32,7 @@ gem 'rails_12factor'
 #   gem 'webrat'
 # end
 
-gem 'mini_fb'
+#gem 'mini_fb'
 gem 'json'
 gem 'redis'
 gem 'term-ansicolor'

@@ -100,10 +100,8 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    hashie (4.1.0)
     htmlentities (4.3.4)
     http_parser.rb (0.6.0)
-    httpclient (2.8.3)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jammit (0.7.0)
@@ -119,9 +117,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mini_fb (2.4.0)
-      hashie
-      httpclient
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -218,7 +213,6 @@ DEPENDENCIES
   jammit
   json
   log4r-color
-  mini_fb
   pg (~> 0.20)
   prototype-rails!
   rails (= 4.2.11)

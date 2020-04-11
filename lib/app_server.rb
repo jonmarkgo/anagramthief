@@ -72,7 +72,7 @@ class AppServer
           [id, {
             :id => p.id,
             :name => p.name,
-            :pf_pic_url => p.profile_pic,
+            :pf_pic_url => "http://placekitten.com/100/100",
             :words => p.words.values.map {|x| x.word}, ## FIXME: sort by ID?
             :score => p.num_letters,
             :is_active => p.is_active,

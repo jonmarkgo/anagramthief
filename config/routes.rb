@@ -1,7 +1,7 @@
 Anathief::Application.routes.draw do
   root :to => 'welcome#index'
 
-  match '/auth/fb_callback', :to => 'sessions#fb_callback', :as => 'sessions_fb_callback', via: [:get, :post]
+  # match '/auth/fb_callback', :to => 'sessions#fb_callback', :as => 'sessions_fb_callback', via: [:get, :post]
   match '/auth/guest', :to => 'sessions#guest_in', :as => 'sessions_guest_in', via: [:get, :post]
   match '/auth/logout', :to => 'sessions#logout', :as => 'sessions_logout', via: [:get, :post]
 

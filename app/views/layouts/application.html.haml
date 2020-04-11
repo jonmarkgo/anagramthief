@@ -11,21 +11,7 @@
     %meta{:content => "CP=\"NON CURa ADMa DEVa TAIa OUR BUS IND PHY UNI COM NAV DEM\"", :href => public_file_url('privacy.p3p'), "http-equiv" => "P3P"}/
 
   %body{:onload => "Anathief.setSize();"}
-    #fb-root
-    :javascript
-      window.fbAsyncInit = function() {
-        FB.init({appId: '#{Anathief::Facebook::APP_ID}',
-          //status: true, cookie: true,
-          xfbml: true,
-          channelUrl: '#{escape_javascript public_file_url("channel.html")}'
-        });
-      };
-      (function() {
-        var e = document.createElement('script'); e.async = true;
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-        document.getElementById('fb-root').appendChild(e);
-      }());
-
+  
     #wrap
       = yield
 
@@ -36,13 +22,3 @@
     = include_javascripts :application
     = include_javascripts :templates
     = yield :after_scripts
-
-    :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-3473766-3']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();

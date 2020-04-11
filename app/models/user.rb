@@ -12,24 +12,24 @@ class User < ActiveRecord::Base
     id.to_s
   end
   
-  def update_from_graph(access_token, me=nil)
-    @graph ||= MiniFB::OAuthSession.new(access_token)
+  # def update_from_graph(access_token, me=nil)
+  #   @graph ||= MiniFB::OAuthSession.new(access_token)
 
-    me = @graph.me unless me
+  #   me = @graph.me unless me
 
-    self.name = me['name']
-    self.first_name = me['first_name']
-    self.last_name = me['last_name']
+  #   self.name = me['name']
+  #   self.first_name = me['first_name']
+  #   self.last_name = me['last_name']
 
-    logger.info "Updating user: #{id} => #{uid} / #{name} / #{first_name} / #{last_name}"
+  #   logger.info "Updating user: #{id} => #{uid} / #{name} / #{first_name} / #{last_name}"
 
-    self.save
-  rescue
-    logger.error "Error in update_from_graph: #{$!}"
-  end
+  #   self.save
+  # rescue
+  #   logger.error "Error in update_from_graph: #{$!}"
+  # end
 
   def profile_pic
-    "http://graph.facebook.com/#{self.uid}/picture?type=square"
+    "http://placekitten.com/100/100"
   end
 
   def guest?

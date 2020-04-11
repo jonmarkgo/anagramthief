@@ -46,12 +46,12 @@ $('#flip-btn').click(function(){flipChar();return false;});$('#claimword').keydo
 $('#vote-done-btn').click(function(){voteBtn(true);});$('#cancel-vote-btn').click(function(){voteBtn(false);});$('#restart-btn').click(function(){ssend('restart');});$('#refresh-btn').click(function(){refreshState();});}
 function refreshState(){ssend('refresh',{},function(data){if(data.ok){processUpdate(data.update_data);}});}
 function updateDoneButton(){if(isGameOver){$('#vote-done-btn').hide();$('#cancel-vote-btn').hide();}else if(votedDone){$('#vote-done-btn').hide();$('#cancel-vote-btn').show();}else{$('#vote-done-btn').show();$('#cancel-vote-btn').hide();}}
-function processUpdate(data){players=data.players;updatePool(data);updatePlayers(data);updateGameOver(data);FB.Canvas.setSize();}
+function processUpdate(data){players=data.players;updatePool(data);updatePlayers(data);updateGameOver(data);}
 function updatePool(data){$('#pool-area').html(JST.tiles({tiles:data.pool,num_unseen:data.pool_remaining}));}
 function updatePlayers(data){players=data.players;$('#player-area').empty();_.each(data.players_order,function(pid){$('#player-area').append(JST.player(_.extend({tiles_template:JST.tiles},players[pid])));});}
 function updateGameOver(data){isGameOver=data.is_game_over;if(isGameOver){disablePlayUi();$('#game-over-area').html(JST.game_over(data));}else{enablePlayUi();$('#game-over-area').empty();}
 votedDone=($.inArray(gd.userId,data.players_voted_done)!=-1);updateDoneButton();}
-function publishGame(data){if(gd.isGuest){$('#prompt-login').show();}else{FB.ui({method:'feed',name:data.title_line,link:gd.urls.canvas,picture:gd.urls.fbPostImg,description:'Anagram Thief is an exciting multi-player game where you try to make words by stealing letters from your opponents.',properties:data.properties,message:''},function(response){});}}
+function publishGame(data){if(gd.isGuest){$('#prompt-login').show();}}
 function addMessage(from,message,msgclass,suppressHighlight){var msgId='message-'+Math.floor(Math.random()*2147483647);var li=$('<li id="'+msgId+'" />');if(from&&players[from]){var fromName=players[from].name;li.append($('<strong />').text(fromName)).append(' ');}
 if(msgclass)li.addClass(msgclass);li.append(message);$('#messages').append(li);messageArea=$('#message-area');messageArea.scrollTop(messageArea[0].scrollHeight);if(!suppressHighlight)
 $('#'+msgId).effect('highlight',{},3000);}
@@ -64,7 +64,7 @@ function showInvites(){$('#show-invites-link').hide();$('#hide-invites-link').sh
 function initPromptLogin(){$('#hide-prompt-login').click(function(){$('#prompt-login').hide();return false;});}
 function initBotControl(){$('#bot-btn').click(function(){$.post(gd.urls.addBot,{game_id:gd.gameId,level:$('#robot-level').val()});return false;});$('#nobot-btn').click(function(){$.post(gd.urls.removeBot,{game_id:gd.gameId});return false;});}
 function removeBot(id){$.post(gd.urls.removeBot,{game_id:gd.gameId,bot_id:id});return false;}
-function setSize(){FB.Canvas.setSize({height:document.documentElement.scrollHeight+30});}
+function setSize(){}
 function describeMove(data){var desc='';if(data.words_stolen&&data.words_stolen.length){desc+='stealing '+data.words_stolen.join(', ');}
 if(data.pool_used&&data.pool_used.length){desc+=(data.words_stolen.length?' +':'taking');desc+=' '+data.pool_used.join(', ');}
 if(desc.length)return' by '+desc;return'';}

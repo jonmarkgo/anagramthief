@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :user_signed_in?, :oauth_url
+  helper_method :current_user, :user_signed_in?
   helper_method :ordinalize
   before_filter :send_fucking_p3p
 
@@ -8,40 +8,40 @@ class ApplicationController < ActionController::Base
   end
 
   def process_signed_request
-    if request.post? and params[:signed_request] and
-        MiniFB.verify_signed_request(Anathief::Facebook::SECRET, params[:signed_request])
-      fbinfo = MiniFB.signed_request_params(Anathief::Facebook::SECRET, params[:signed_request])
+    # if request.post? and params[:signed_request] and
+    #     MiniFB.verify_signed_request(Anathief::Facebook::SECRET, params[:signed_request])
+    #   fbinfo = MiniFB.signed_request_params(Anathief::Facebook::SECRET, params[:signed_request])
 
-      if fbinfo.has_key?('user_id')
-        fb_uid = fbinfo['user_id']
-        fb_tok = session[:fb_tok] = fbinfo['oauth_token']
-        logger.info "Got rq from auth'd user #{fb_uid}"
-        logger.info "Tok #{fb_tok}"
+    #   if fbinfo.has_key?('user_id')
+    #     fb_uid = fbinfo['user_id']
+    #     fb_tok = session[:fb_tok] = fbinfo['oauth_token']
+    #     logger.info "Got rq from auth'd user #{fb_uid}"
+    #     logger.info "Tok #{fb_tok}"
 
-        me = MiniFB.get(fb_tok, 'me')
-        unless @current_user = User.find_by_uid(fb_uid)
-          # do we ever reach this? Apparently so.
-          logger.info "Strange: user account #{fb_uid} not found"
-          logger.info "Creating new user for fbid #{fb_uid}"
-          @current_user = User.create :uid => fb_uid
-        end
-        @current_user.update_from_graph(fb_tok, me)
+    #     me = MiniFB.get(fb_tok, 'me')
+    #     unless @current_user = User.find_by_uid(fb_uid)
+    #       # do we ever reach this? Apparently so.
+    #       logger.info "Strange: user account #{fb_uid} not found"
+    #       logger.info "Creating new user for fbid #{fb_uid}"
+    #       @current_user = User.create :uid => fb_uid
+    #     end
+    #     @current_user.update_from_graph(fb_tok, me)
 
-        session[:user_id] = @current_user.id
-      else
-        logger.info "Not logged in anymore"
+    #     session[:user_id] = @current_user.id
+    #   else
+    #     logger.info "Not logged in anymore"
 
-        session[:fb_tok] = nil
+    #     session[:fb_tok] = nil
 
-        # if logged in as fb user, logout
-        if current_user and current_user.uid
-          session[:user_id] = nil
-          @current_user = nil
-        end
-      end
+    #     # if logged in as fb user, logout
+    #     if current_user and current_user.uid
+    #       session[:user_id] = nil
+    #       @current_user = nil
+    #     end
+    #   end
 
-      return true
-    end
+    #   return true
+    # end
     return false
   end
 
@@ -107,14 +107,14 @@ class ApplicationController < ActionController::Base
       :user_id => user_id,
       :game_id => game_id,
       :timestamp => Time.now.to_i,
-      :name => user.name
-      #:profile_pic => user.profile_pic,
+      :name => user.name,
+      :profile_pic => user.profile_pic
     }.merge(extra_data))
   end
 
 
   def oauth_url
-    MiniFB.oauth_url(Anathief::Facebook::APP_ID, sessions_fb_callback_url, :scope => '')
+    # MiniFB.oauth_url(Anathief::Facebook::APP_ID, sessions_fb_callback_url, :scope => '')
   end
 
   def ordinalize(value)

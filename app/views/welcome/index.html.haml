@@ -2,12 +2,6 @@
 %h1 Welcome to Anagram Thief!
 %h2 Play Now
 .clearfix
-  .left-col
-    %h3 Play using Facebook
-    %p Sign in using Facebook to use your profile picture and find your friends' games more quickly.
-    %p Don't worry, Anagram Thief won't post anything without asking you first.
-    %a{:href => oauth_url, :target => "_top"}
-      %img{:alt => "Sign in with Facebook", :src => "/images/loginbutton.png"}/
   .right-col
     %h3 Start playing immediately as a guest
     = form_tag(sessions_guest_in_path) do

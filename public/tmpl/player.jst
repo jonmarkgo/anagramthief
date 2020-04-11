@@ -1,7 +1,6 @@
 <div id="player-info-<%= id %>"
   class="player-info <%= is_active ? '' : 'in' %>active-player">
 <div class="clearfix">
-  <img src="<%= escapeHtml(pf_pic_url) %>" width="40" height="40" class="score-pfpic" />
   <span class="username"><%= escapeHtml(name) %></span>
   <% if (!is_active) { %>(Inactive)<% } %>
   &mdash;

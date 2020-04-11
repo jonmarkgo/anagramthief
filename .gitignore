@@ -24,3 +24,5 @@ vendor/bundle/
 !/log/.keep
 /tmp
 .env
+supervisord.log
+supervisord.pid
