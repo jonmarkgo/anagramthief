@@ -1,0 +1,17 @@
+{
+  "name": "anagramthief",
+  "version": "1.0.0",
+  "description": "",
+  "main": "siows_proxy.js",
+  "dependencies": {
+    "optimist": "^0.2.6",
+    "socket.io": "^0.7.6",
+    "websocket-client": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
