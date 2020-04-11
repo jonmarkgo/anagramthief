@@ -1,7 +1,8 @@
 function escapeHtml(text) {
-  return text.replace(/[&<>"'`]/g, function (chr) {
-      return '&#' + chr.charCodeAt(0) + ';';
-    });
+  return text;
+  //.replace(/[&<>"'`]/g, function (chr) {
+    //  return '&#' + chr.charCodeAt(0) + ';';
+    //});
 }
 
 var Anathief = function() {

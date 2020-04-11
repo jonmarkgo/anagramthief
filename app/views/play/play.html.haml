@@ -150,17 +150,17 @@
   :javascript
     $(document).ready(function() {
       Anathief.init({
-        sio: '#{escape_javascript Anathief::AppServer::SIOWS_URL}',
-        userId: '#{escape_javascript @me_id}',
-        gameId: '#{escape_javascript @game_id}',
+        sio: '#{raw Anathief::AppServer::SIOWS_URL}',
+        userId: '#{raw @me_id}',
+        gameId: '#{raw @game_id}',
         idToken: '#{raw @id_token}',
         urls: {
-          canvas: '#{escape_javascript Anathief::Facebook::CANVAS_URL}',
-          fbPostImg: '#{escape_javascript image_url "tiles-picture2.jpg"}',
-          addBot: '#{escape_javascript bots_add_url}',
-          removeBot: '#{escape_javascript bots_remove_url}',
-          listBots: '#{escape_javascript bots_list_url}',
-          changeBot: '#{escape_javascript bots_change_url}',
+          canvas: '#{raw Anathief::Facebook::CANVAS_URL}',
+          fbPostImg: '#{raw image_url "tiles-picture2.jpg"}',
+          addBot: '#{raw bots_add_url}',
+          removeBot: '#{raw bots_remove_url}',
+          listBots: '#{raw bots_list_url}',
+          changeBot: '#{raw bots_change_url}',
         },
         isGuest: #{current_user.guest? ? 'true' : 'false'},
       });

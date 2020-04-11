@@ -370,14 +370,14 @@ class AppServer
 
     raw = Wordnik.word.get_definitions(word)
     raw.each do |d|
-      next unless d.text
-      pos = d.part_of_speech
+      next unless d['text']
+      pos = d['part_of_speech']
       if pos_map.include? pos
         pos = pos_map[pos]
       else
         pos.gsub! /-/, ' ' if pos
       end
-      result[d.headword][pos] << d.text
+      result[d['headword']][pos] << d['text']
     end
     result[word] = [] if result.empty?
 

@@ -14,8 +14,8 @@ class BotControlConnection
   # N.B. not thread-safe!
   def request(type, data={})
     check_conn
-
-    @sock.send({:_t => type}.merge(data).to_json + "\r\n", 0)
+    
+    @sock.send({:_t => type}.merge(data).to_json.html_safe + "\r\n", 0)
     return JSON.parse(@sock.readline)
   end
 end

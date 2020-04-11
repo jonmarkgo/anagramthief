@@ -59,7 +59,7 @@ class BotsController < ApplicationController
     @game_id = params[:game_id]
 
     begin
-      @game = Game.find(@game_id, :include => [:users])
+      @game = Game.includes(:users).where(id: @game_id) #find(@game_id, :include => [:users])
     rescue ActiveRecord::RecordNotFound
       redirect_to games_list_url unless @game
       return false
@@ -70,7 +70,7 @@ class BotsController < ApplicationController
       @me.save
 
       # need to reload this because now this user is in the @game.users list too
-      @game = Game.find(@game_id, :include => [:users])
+      @game = Game.includes(:users).where(id: @game_id)
     end
   end
 end
