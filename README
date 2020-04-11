@@ -1,7 +1,21 @@
 This is the code for [Anagram Thief](http://dcliu.com/projects/anagram-thief/), which is a real-time multiplayer word game in which you race to build words from letter tiles, and you can steal your opponents’ words by rearranging and adding letters.
 
-Note: The site is no longer live and the code is unmaintained. Provided for posterity in case anyone is interested in doing something with it.
+Updated to run on Rails 4
 
----
+To execute:
+move .env.sample to .env and fill in vars
 
-[dcl] NOTE: Must be hosted at the root / of a domain! Juggernaut hardcodes "/WebSocketMain.swf"
+in wordlists dir:
+ruby import-inflects.rb 2+2lemma.txt
+ruby import-wordlist.rb TWL06.txt twl06
+
+in ai dir:
+./dev_launch or prod_launch
+
+in script dir:
+./dev-app_server or ./prod-app_server
+
+in node dir:
+./dev-launch or ./prod-launch
+
+Lastly, run rails server (looks like some of the other services need to be up before it runs successfully)
