@@ -14,7 +14,7 @@ require 'steal_bot'
 require 'lookup_tree/smart_branch'
 
 include Log4r
-#Logger = Log4r::Logger
+Logger = Log4r::Logger
 
 ColorOutputter.new 'color', {:colors =>
   {

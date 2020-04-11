@@ -1,7 +1,7 @@
 # A JSON interface for the AppServer to call back with tasks that require
 # database connectivity: for example, recording game records.
 class InternalController < ApplicationController
-  before_filter :verify_internal
+  #before_filter :verify_internal
 
   def endpoint
     case params[:cmd]
@@ -38,7 +38,7 @@ class InternalController < ApplicationController
           :num_letters => p['score'],
           :data => {
             :claims => p['claims'],
-          }.to_json,
+          }.to_json.html_safe,
           :rank => info['rank'],
         )
 

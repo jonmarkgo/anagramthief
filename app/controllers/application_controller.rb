@@ -107,8 +107,8 @@ class ApplicationController < ActionController::Base
       :user_id => user_id,
       :game_id => game_id,
       :timestamp => Time.now.to_i,
-      :name => user.name,
-      :profile_pic => user.profile_pic,
+      :name => user.name
+      #:profile_pic => user.profile_pic,
     }.merge(extra_data))
   end
 

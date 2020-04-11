@@ -153,7 +153,7 @@
         sio: '#{escape_javascript Anathief::AppServer::SIOWS_URL}',
         userId: '#{escape_javascript @me_id}',
         gameId: '#{escape_javascript @game_id}',
-        idToken: '#{escape_javascript @id_token}',
+        idToken: '#{raw @id_token}',
         urls: {
           canvas: '#{escape_javascript Anathief::Facebook::CANVAS_URL}',
           fbPostImg: '#{escape_javascript image_url "tiles-picture2.jpg"}',

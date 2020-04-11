@@ -284,7 +284,7 @@ end
   #end
 
   #def save
-    #redis[redis_key] = to_json
+    #redis[redis_key] = to_json.html_safe
     #@is_saved = true
   #end
 
@@ -302,8 +302,8 @@ end
     #self
   #end
 
-  #def to_json
-    #to_data.to_json
+  #def to_json.html_safe
+    #to_data.to_json.html_safe
   #end
 
   #def to_data
