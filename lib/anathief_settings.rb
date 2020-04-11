@@ -1,6 +1,7 @@
 module Anathief
  # require 'yaml'
   require 'dotenv'
+  Dotenv.load('../.env')
   RAILS_ENV = ENV["RAILS_ENV"]
 #  settings_file = File.expand_path(File.dirname(__FILE__) + "/../config/settings.yml")
  # puts "Loading settings from #{settings_file}, env #{RAILS_ENV}"
