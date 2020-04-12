@@ -28,7 +28,7 @@ class StealBot
   @@log = Logger.new('StealBot', INFO)
   @@log.add('color')
 
-  MIN_LEN = 3
+  MIN_LEN = 4
 
   # a reject should take as long as a word of this many chars
   REJECT_EFFECTIVE_CHARS = 9

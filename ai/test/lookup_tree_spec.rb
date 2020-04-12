@@ -56,7 +56,7 @@ shared_examples "LookupTree" do
   end
   context "with a word-length filter" do
     it "finds valid supersets (exhaustive)" do
-      min_len = 3
+      min_len = 4
       filter = lambda { |words| words.select {|w| w.length >= min_len} }
 
       for_all_partial_words(@dict) { |w, subset_str|

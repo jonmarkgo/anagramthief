@@ -1,7 +1,7 @@
 require 'word_utils'
 require 'set'
 
-MIN_LEN = 3
+MIN_LEN = 4
 
 if ARGV.length < 3
   puts "Usage: #{$0} [word-list] [freq-list] [max-rank]"

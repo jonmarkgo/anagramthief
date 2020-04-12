@@ -89,7 +89,7 @@ class AppServer::GameState
   def claim_word(user_id, word_raw)
     word = word_raw.upcase
 
-    return :word_too_short unless word.length >= 3
+    return :word_too_short unless word.length >= 4
 
     match_result = WordMatcher.word_match(
       @pool_seen,
