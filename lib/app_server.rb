@@ -382,8 +382,8 @@ class AppServer
       result[word] = [] if result.empty?
 
       result
-    rescue ClientError => e
-      @@log.error "(ClientError) #{e.inspect}\n#{e.backtrace.join "\n"}"
+    rescue StandardError => e
+      @@log.error "(StandardError) #{e.inspect}\n#{e.backtrace.join "\n"}"
       "N/A"
     end
   end
