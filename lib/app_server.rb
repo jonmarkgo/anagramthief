@@ -367,21 +367,25 @@ class AppServer
     result = Hash.new do |hash, key|
       hash[key] = Hash.new { |hash2, key2| hash2[key2] = [] }
     end
-
-    raw = Wordnik.word.get_definitions(word)
-    raw.each do |d|
-      next unless d['text']
-      pos = d['part_of_speech']
-      if pos_map.include? pos
-        pos = pos_map[pos]
-      else
-        pos.gsub! /-/, ' ' if pos
+    begin
+      raw = Wordnik.word.get_definitions(word)
+      raw.each do |d|
+        next unless d['text']
+        pos = d['part_of_speech']
+        if pos_map.include? pos
+          pos = pos_map[pos]
+        else
+          pos.gsub! /-/, ' ' if pos
+        end
+        result[d['headword']][pos] << d['text']
       end
-      result[d['headword']][pos] << d['text']
-    end
-    result[word] = [] if result.empty?
+      result[word] = [] if result.empty?
 
-    result
+      result
+    rescue ClientError => e
+      @@log.error "(ClientError) #{e.inspect}\n#{e.backtrace.join "\n"}"
+      "N/A"
+    end
   end
 
   TOUCH_EVERY = 20 #seconds
