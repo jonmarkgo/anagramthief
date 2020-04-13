@@ -384,7 +384,7 @@ class AppServer
       result
     rescue StandardError => e
       @@log.error "(StandardError) #{e.inspect}\n#{e.backtrace.join "\n"}"
-      "N/A"
+      result[word] = "Error"
     end
   end
 
