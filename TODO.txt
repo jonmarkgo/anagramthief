@@ -1,3 +1,18 @@
+Jon Ideas for anagrams
+  Set letter pool quantity and minimum # of letters per word
+  Order of flippers /round robin or rate limiting or autoflip
+  Private rooms
+  Devise/Omniauth
+  Leaderboard
+  Say who word was stolen from
+  Fix wordnik bug w/ bad definitions
+  speech to text
+  show root word in definition
+  fix how root words are determined
+
+
+
+
 RAILS DECOUPLING
 / Show player names
 / Record user win/loss stats
