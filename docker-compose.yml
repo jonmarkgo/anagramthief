@@ -31,21 +31,25 @@ services:
     networks:
       - anagramthief
   redis:
-    image: "redis:5.0.8"
+    env_file:
+     - .env
+    image: "redis-alpine"
 
-    command: redis-server
+    command: redis-server --requirepass $REDIS_PASS
 
     ports:
      - "6379:6379"
     expose:
       - "6379"
     volumes:
-     - $PWD/redis-data:/var/lib/redis
+     - ./redis-data:/var/lib/redis
 
     environment:
      - REDIS_REPLICATION_MODE=master
     networks:
       - anagramthief
+      node_net:
+        ipv4_address: 172.28.1.4  
   node:
     image: "node:13"
     user: "node"
@@ -82,3 +86,9 @@ services:
 networks:
   anagramthief:
     driver: bridge
+
+  node_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16

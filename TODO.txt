@@ -9,7 +9,7 @@ Jon Ideas for anagrams
   speech to text
   show root word in definition
   fix how root words are determined
-
+  why is dictionary dying after a while?
 
 
 
