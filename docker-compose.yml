@@ -48,8 +48,7 @@ services:
      - REDIS_REPLICATION_MODE=master
     networks:
       - anagramthief
-      node_net:
-        ipv4_address: 172.28.1.4  
+
   node:
     image: "node:13"
     user: "node"
@@ -86,9 +85,3 @@ services:
 networks:
   anagramthief:
     driver: bridge
-
-  node_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.28.0.0/16
