@@ -5,8 +5,8 @@ module RedisLockQueue
   require 'term/ansicolor'
   require 'pp'
   @c = Term::ANSIColor
-  @redis = Redis.new(host: Anathief::REDIS_HOST)
-  @redis2 = Redis.new(host: Anathief::REDIS_HOST)
+  @redis = Redis.new(host: Anathief::REDIS_HOST, password: Anathief::REDIS_PASS)
+  @redis2 = Redis.new(host: Anathief::REDIS_HOST, password: Anathief::REDIS_PASS)
 
   def self.log(what)
     Rails.logger.info what if Rails and Rails.logger
