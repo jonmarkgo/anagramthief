@@ -1,7 +1,7 @@
 require 'redis'
 require 'pp'
 require 'set'
-
+require 'anathief_settings'
 
 def parse_list(blob)
   parts = blob.scan /(\w+) \+?  (?: \s+ -> \s+ \[ ( [^\]]+ ) \])?/x
@@ -34,7 +34,7 @@ puts "Reading #{file} => redis hash '#{rhash}'"
 #puts "Enter to continue, ^C to abort"
 #STDIN.gets
 
-@r = Redis.new(host: "redis")
+@r = Redis.new(host: "redis", password: Anathief::REDIS_PASS)
 
 @r.del rhash
 
