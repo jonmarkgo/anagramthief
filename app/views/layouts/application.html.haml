@@ -9,7 +9,14 @@
     /[if IE] <haml:loud> include_stylesheets :ie, :media => 'screen, projection' </haml:loud>
     = csrf_meta_tag
     %meta{:content => "CP=\"NON CURa ADMa DEVa TAIa OUR BUS IND PHY UNI COM NAV DEM\"", :href => public_file_url('privacy.p3p'), "http-equiv" => "P3P"}/
-
+    %script{:async => true, :src => "https://www.googletagmanager.com/gtag/js?id=#{raw Anathief::GA_ID}"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+      
+          gtag('config', "#{raw Anathief::GA_ID}");
+  
   %body{:onload => "Anathief.setSize();"}
   
     #wrap
