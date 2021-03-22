@@ -4,6 +4,7 @@ default: &default
    encoding: unicode
    host: db
    username: postgres
+   password: password
    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
    timeout: 5000
 
@@ -22,5 +23,6 @@ production:
    encoding: unicode
    host: db
    username: postgres
+   password: password
    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
    timeout: 5000
